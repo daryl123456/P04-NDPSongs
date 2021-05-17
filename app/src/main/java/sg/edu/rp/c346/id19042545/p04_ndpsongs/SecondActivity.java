@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,6 +18,9 @@ public class SecondActivity extends AppCompatActivity {
     ArrayAdapter<Song> aa;
     ArrayList<Song> al;
     Button btn5Star;
+    ArrayList<Integer> yearList;
+    Spinner spn;
+    ArrayAdapter<Integer> aaSPN;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,34 +29,64 @@ public class SecondActivity extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.lv);
         btn5Star = (Button) findViewById(R.id.btn5Star);
+        spn = findViewById(R.id.spn);
+        yearList =new ArrayList<>();
+
+        DBHelper dbh = new DBHelper(SecondActivity.this);
+        // Display all songs
+        al = new ArrayList<Song>();
+        al = dbh.getAllSongs("");
+        dbh.close();
+        aa = new SongAdapter(this, R.layout.row, al);
+        lv.setAdapter(aa);
+
+        // Year Spinner
+        for (Song i:al) {
+            if (!yearList.contains(i.getYears()))
+                yearList.add(i.getYears());
+        }
+        aaSPN = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        spn.setAdapter(aaSPN);
+
+        spn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String year = yearList.get(position)+"";
+                DBHelper db = new DBHelper(SecondActivity.this);
+                al.clear();
+                al.addAll(db.getAllSongsForyear(year));
+                db.close();
+                aa.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        // List View Selected items
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int
+                    position, long identity) {
+                Song data = al.get(position);
+                Intent i = new Intent(SecondActivity.this,
+                        ThirdActivity.class);
+                i.putExtra("data",data);
+                startActivityForResult(i, 9);
+            }
+        });
+
 
         btn5Star.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(SecondActivity.this);
-                Intent i = getIntent();
+                al.clear();
+                al.addAll(dbh.getAllSongs("5"));
+                dbh.close();
+                aa.notifyDataSetChanged();
 
-                al = new ArrayList<Song>();
-
-            }
-        });
-
-        DBHelper dbh = new DBHelper(SecondActivity.this);
-        al = new ArrayList<Song>();
-
-        aa = new SongAdapter(this, R.layout.row, al);
-        lv.setAdapter(aa);
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int
-                    position, long identity) {
-
-                Song data = al.get(position);
-                Intent i = new Intent(SecondActivity.this,
-                        ThirdActivity.class);
-
-                startActivityForResult(i, 9);
             }
         });
     }
@@ -65,12 +99,20 @@ public class SecondActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 9) {
             DBHelper dbh = new DBHelper(SecondActivity.this);
             al.clear();
-
+            al.addAll(dbh.getAllSongs(""));
             aa.notifyDataSetChanged();
             dbh.close();
+            updatedYearList();
 
-        } else {
-            aa.notifyDataSetChanged();
         }
+    }
+
+    public void updatedYearList() {
+        yearList.clear();
+        for (Song i:al) {
+            if (!yearList.contains(i.getYears()))
+                yearList.add(i.getYears());
+        }
+        aaSPN.notifyDataSetChanged();
     }
 }
