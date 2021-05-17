@@ -3,13 +3,14 @@ package sg.edu.rp.c346.id19042545.p04_ndpsongs;
 import java.io.Serializable;
 
 public class Song implements Serializable {
-    private int _id;
+    private int id;
     private String title;
     private String singers;
     private int years;
     private int stars;
 
-    public Song(String title, String singers, int years, int stars) {
+    public Song(int id ,String title, String singers, int years, int stars) {
+        this.id = id;
         this.title = title;
         this.singers = singers;
         this.years = years;
@@ -17,7 +18,7 @@ public class Song implements Serializable {
     }
 
     public int get_id() {
-        return _id;
+        return id;
     }
 
     public String getTitle() {

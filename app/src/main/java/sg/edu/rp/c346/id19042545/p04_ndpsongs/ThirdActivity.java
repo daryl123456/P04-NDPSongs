@@ -27,14 +27,17 @@ public class ThirdActivity extends AppCompatActivity {
         etTitle = findViewById(R.id.etTitle1);
         etSinger = findViewById(R.id.etSinger1);
         etYear = findViewById(R.id.etYears1);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        btnCancel = findViewById(R.id.buttonCancel);
+        btnDelete = findViewById(R.id.btnDelete);
 
         Intent i = getIntent();
         data = (Song) i.getSerializableExtra("data");
 
-        etId.setText(data.get_id());
+        etId.setText(data.get_id()+"");
         etTitle.setText(data.getTitle());
         etSinger.setText(data.getSingers());
-        etYear.setText(data.getYears());
+        etYear.setText(data.getYears()+"");
 
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {

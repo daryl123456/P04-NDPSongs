@@ -72,7 +72,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String singerContent = cursor.getString(2);
                 int yearContent = cursor.getInt(3);
                 int starContent = cursor.getInt(4);
-                Song song = new Song(titleContent, singerContent, yearContent, starContent);
+                Song song = new Song(id,titleContent, singerContent, yearContent, starContent);
                 songs.add(song);
             } while (cursor.moveToNext());
         }
@@ -123,7 +123,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String singerContent = cursor.getString(2);
                 int yearContent = cursor.getInt(3);
                 int starContent = cursor.getInt(4);
-                Song song = new Song(titleContent, singerContent, yearContent, starContent);
+                Song song = new Song(id, titleContent, singerContent, yearContent, starContent);
                 songs.add(song);
             } while (cursor.moveToNext());
         }
