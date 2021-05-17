@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 
 public class SecondActivity extends AppCompatActivity {
+
     ListView lv;
     ArrayAdapter<Song> aa;
     ArrayList<Song> al;
@@ -31,6 +32,7 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DBHelper dbh = new DBHelper(SecondActivity.this);
                 Intent i = getIntent();
+
 
                 al = new ArrayList<Song>();
 
