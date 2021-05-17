@@ -29,7 +29,7 @@ public class SecondActivity extends AppCompatActivity {
 
         lv = (ListView) findViewById(R.id.lv);
         btn5Star = (Button) findViewById(R.id.btn5Star);
-        spn = findViewById(R.id.spn);
+        spn = findViewById(R.id.spnYear);
         yearList =new ArrayList<>();
 
         DBHelper dbh = new DBHelper(SecondActivity.this);
