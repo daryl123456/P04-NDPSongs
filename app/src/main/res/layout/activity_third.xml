@@ -8,41 +8,54 @@
     tools:context=".ThirdActivity" >
 
     <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Song ID" />
+
+    <EditText
+        android:id="@+id/etId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:enabled="false"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Song Title" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/etTitle1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Singers" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/etSinger1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Years" />
 
     <EditText
-        android:id="@+id/editTextNumber"
+        android:id="@+id/etYears1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -52,71 +65,69 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="Stars" />
 
     <RadioGroup
+        android:id="@+id/rgSecond"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radioButton5"
+            android:id="@+id/rb1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="1" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/rb2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="2" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/rb3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="3" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/rb4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="4" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/rb5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RadioButton" />
+            android:text="5" />
     </RadioGroup>
 
-    <RadioButton
-        android:id="@+id/radioButton11"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RadioButton" />
+        android:orientation="horizontal">
 
-    <RadioButton
-        android:id="@+id/radioButton12"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RadioButton" />
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Update" />
 
-    <RadioButton
-        android:id="@+id/radioButton13"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RadioButton" />
+        <Button
+            android:id="@+id/btnDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="delete" />
+    </LinearLayout>
 
-    <RadioButton
-        android:id="@+id/radioButton14"
+    <Button
+        android:id="@+id/buttonCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="RadioButton" />
+        android:text="cancel" />
 
-    <RadioButton
-        android:id="@+id/radioButton15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="RadioButton" />
 </LinearLayout>
