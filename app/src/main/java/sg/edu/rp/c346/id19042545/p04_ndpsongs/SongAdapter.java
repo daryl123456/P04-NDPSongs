@@ -1,6 +1,7 @@
 package sg.edu.rp.c346.id19042545.p04_ndpsongs;
 
 import android.content.Context;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
     ArrayList<Song> songs;
     int resource;
     TextView tvTitle, tvSingers, TvYear;
-    ImageView iv1, iv2, iv3, iv4, iv5;
+    ImageView iv1, iv2, iv3, iv4, iv5, ivSong;
 
     public SongAdapter(Context context, int resource, ArrayList<Song> songs) {
         super(context, resource, songs);
@@ -40,12 +41,14 @@ public class SongAdapter extends ArrayAdapter<Song> {
         ImageView iv3 = (ImageView) rowView.findViewById(R.id.imageView3star);
         ImageView iv4 = (ImageView) rowView.findViewById(R.id.imageView4star);
         ImageView iv5 = (ImageView) rowView.findViewById(R.id.imageView5star);
+        ImageView ivSong = (ImageView) rowView.findViewById(R.id.ivSong);
 
         Song song = songs.get(position);
 
         tvTitle.setText(song.getTitle());
         tvSingers.setText(song.getSingers());
         tvYear.setText(Integer.toString(song.getYears()));
+        ivSong.setImageResource(R.drawable.ic_library_music);
 
         //Check if the property for starts == 5, if so, "light" up the stars
         if (song.getStars() == 5) {
