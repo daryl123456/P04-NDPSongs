@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 import java.util.ArrayList;
@@ -50,6 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put(COLUMN_STARS, stars + "");
         long result = db.insert(TABLE_SONG, null, values);
         db.close();
+        Log.d("SQL Insert","ID:"+ result); //id returned, shouldn’t be -1
         return result;
     }
 
