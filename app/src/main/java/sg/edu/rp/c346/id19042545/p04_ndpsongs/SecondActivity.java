@@ -45,7 +45,7 @@ public class SecondActivity extends AppCompatActivity {
             if (!yearList.contains(i.getYears()))
                 yearList.add(i.getYears());
         }
-        aaSPN = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, years);
+        aaSPN = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_dropdown_item, yearList);
         spn.setAdapter(aaSPN);
 
         spn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
