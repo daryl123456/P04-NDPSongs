@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
+
 
 import java.util.ArrayList;
 
@@ -41,16 +41,16 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public long insertSong(String songName, String singer, int year, int stars) {
+    public long insertSong(String title, String singer, int year, int stars) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(COLUMN_TITLE, songName);
+        values.put(COLUMN_TITLE, title);
         values.put(COLUMN_SINGER, singer);
-        values.put(COLUMN_YEAR, year);
-        values.put(COLUMN_STARS, stars);
-        db.insert(TABLE_SONG, null, values);
+        values.put(COLUMN_YEAR, year + "");
+        values.put(COLUMN_STARS, stars + "");
+        long result = db.insert(TABLE_SONG, null, values);
         db.close();
-
+        return result;
     }
 
     public ArrayList<Song> getAllSongs(String keyword) {
@@ -70,8 +70,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String singerContent = cursor.getString(2);
                 int yearContent = cursor.getInt(3);
                 int starContent = cursor.getInt(4);
-                Song song = new Song( titleContent,singerContent,yearContent,starContent);
-                song.set_id(id);
+                Song song = new Song(titleContent, singerContent, yearContent, starContent);
                 songs.add(song);
             } while (cursor.moveToNext());
         }
@@ -85,8 +84,8 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_TITLE, data.getTitle());
-        values.put(COLUMN_SINGER, data.getSinger());
-        values.put(COLUMN_YEAR, data.getYear());
+        values.put(COLUMN_SINGER, data.getSingers());
+        values.put(COLUMN_YEAR, data.getYears());
         values.put(COLUMN_STARS, data.getStars());
         values.put(COLUMN_TITLE, data.getTitle());
         String condition = COLUMN_ID + "= ?";
@@ -96,7 +95,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return result;
     }
 
-    public int deleteNote(int id) {
+    public int deleteSong(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String condition = COLUMN_ID + "= ?";
         String[] args = {String.valueOf(id)};
@@ -109,9 +108,9 @@ public class DBHelper extends SQLiteOpenHelper {
         ArrayList<Song> songs = new ArrayList<Song>();
 
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] columns= {COLUMN_ID, COLUMN_TITLE,COLUMN_SINGER,COLUMN_YEAR,COLUMN_STARS};
+        String[] columns = {COLUMN_ID, COLUMN_TITLE, COLUMN_SINGER, COLUMN_YEAR, COLUMN_STARS};
         String condition = COLUMN_YEAR + " Like ?";
-        String[] args = { "%" +  keyword + "%"};
+        String[] args = {"%" + keyword + "%"};
         Cursor cursor = db.query(TABLE_SONG, columns, condition, args,
                 null, null, null, null);
 
@@ -122,8 +121,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 String singerContent = cursor.getString(2);
                 int yearContent = cursor.getInt(3);
                 int starContent = cursor.getInt(4);
-                Song song = new Song( titleContent,singerContent,yearContent,starContent);
-                song.set_id(id);
+                Song song = new Song(titleContent, singerContent, yearContent, starContent);
                 songs.add(song);
             } while (cursor.moveToNext());
         }
